@@ -1,0 +1,24 @@
+{
+  "name": "automationexercise",
+  "version": "1.0.0",
+  "description": "POM for Automation Exercise website",
+  "homepage": "https://github.com/hasanazeerkhan/automationexercise#readme",
+  "bugs": {
+    "url": "https://github.com/hasanazeerkhan/automationexercise/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hasanazeerkhan/automationexercise.git"
+  },
+  "license": "ISC",
+  "author": "Mohammed Hasan N",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^26.6.3"
+  }
+}
