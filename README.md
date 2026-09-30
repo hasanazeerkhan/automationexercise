@@ -109,6 +109,23 @@ Run the Playwright suite to generate the HTML report:
 npm test
 ```
 
+### Environment configuration
+
+Copy `.env.example` to `.env` and set any local configuration there. `.env` is
+ignored by Git, so values entered there are not committed. Avoid committing
+credentials in any file.
+
+| Variable | Purpose | Default |
+| --- | --- | --- |
+| `BASE_URL` | Application URL used by Playwright | `https://www.automationexercise.com` |
+| `TEST_USER_EMAIL` | Email for the shared authentication setup | `testData/credentials.json` |
+| `TEST_USER_PASSWORD` | Password for the shared authentication setup | `testData/credentials.json` |
+| `TEST_USER_NAME` | Username expected after authentication | `testData/credentials.json` |
+| `HEADLESS` | Run the browser headlessly when set to `true` | `false` |
+
+Environment values take precedence over the credential JSON. Unset credential
+values continue to use the existing test data, so `.env` is optional.
+
 ## Execution Flow
 The framework follows a clear flow during test execution:
 
