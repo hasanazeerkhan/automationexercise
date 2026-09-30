@@ -147,6 +147,8 @@ This framework is built around a few important principles:
 
 ## Architecture Diagram
 
+![AutomationExercise test automation framework architecture](docs/architecture.png)
+
 ```mermaid
 flowchart LR
     A[Playwright Config] --> B[Test Suite]
