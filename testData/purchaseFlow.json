@@ -1,0 +1,42 @@
+{
+  "signup": {
+    "usernamePrefix": "Morgan Ellis",
+    "emailPrefix": "morgan.ellis",
+    "emailDomain": "example.com",
+    "passwordPrefix": "Welcome",
+    "lastNamePrefix": "Ellis",
+    "accountInfo": {
+      "title": "Mr",
+      "dateOfBirth": {
+        "day": "10",
+        "month": "May",
+        "year": "1990"
+      },
+      "newsletter": true,
+      "receiveOffers": true,
+      "firstName": "Morgan",
+      "company": "Harbor & Pine Retail Group",
+      "address1": "2400 Commerce Boulevard",
+      "address2": "Suite 310",
+      "country": "United States",
+      "state": "California",
+      "city": "Los Angeles",
+      "zipcode": "90001",
+      "mobileNumber": "5551234567"
+    }
+  },
+  "product": {
+    "id": "1",
+    "name": "Blue Top"
+  },
+  "checkout": {
+    "comment": "Please deliver to the receiving department during standard business hours."
+  },
+  "payment": {
+    "name": "Morgan Ellis",
+    "cardNumber": "4111111111111111",
+    "cvc": "123",
+    "expiryMonth": "12",
+    "expiryYear": "2030"
+  }
+}
