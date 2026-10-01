@@ -22,7 +22,7 @@ export class NavigationTab extends BasePage {
 		// Opens the Signup/Login page from the header navigation.
 		async clickSignupLogin() {
 			await this.signupLoginLink.click();
-			await this.page.waitForLoadState('networkidle');
+			await expect(this.page).toHaveURL(/\/login(?:[/?#]|$)/);
 		}
 
 		// Opens the Contact Us page from the main navigation.
