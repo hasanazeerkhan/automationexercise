@@ -89,7 +89,8 @@ This separation gives the framework flexibility for both deterministic and rando
 The tests folder is organized by purpose and coverage type.
 
 - tests/auth.setup.js performs authentication setup and stores browser state
-- tests/modules contains feature-level test cases for login, signup, product flow, cart, payment, checkout, and account deletion
+- tests/modules contains page-focused tests; other pages are used only to establish the state needed to reach the page under test
+- tests/scenario contains user-facing scenarios selected from the Automation Exercise test-case list
 - tests/e2e contains end-to-end flow validation for the complete application journey
 
 This organizes the suite into setup, reusable feature tests, and full business journey tests. It also helps with execution strategy, reporting, and future scaling.
