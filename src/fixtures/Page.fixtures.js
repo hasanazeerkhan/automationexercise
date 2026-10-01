@@ -11,7 +11,7 @@ import { PaymentPage } from '../pages/Payment.page.js';
 import { PaymentCompletedPage } from '../pages/PaymentCompleted.page.js';
 import { ProductsPage } from '../pages/Products.page.js';
 import { SignupPage } from '../pages/Signup.page.js';
-import { createTestAccountDetails } from '../utils/testAccount.utils.js';
+import { createTestAccountDetails } from '../utils/dynamicDataGenerator.utils.js';
 
 /**
  * @typedef {Object} CustomPageFixtures
