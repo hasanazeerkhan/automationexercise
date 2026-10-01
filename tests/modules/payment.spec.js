@@ -1,7 +1,7 @@
 import { test } from '../../src/fixtures/Page.fixtures.js';
 import purchaseFlow from '../../testData/purchaseFlow.json';
 
-test('Checkout page displays address details and accepts an order comment', async ({ NavigationTab, registeredUser, productsPage, cartPage, checkoutPage }) => {
+test('Payment page displays card fields and accepts payment details', async ({ NavigationTab, registeredUser, productsPage, cartPage, checkoutPage, paymentPage }) => {
 	await NavigationTab.openProducts();
 	await productsPage.validateProductsPageVisible();
 	await productsPage.addProductToCart(purchaseFlow.product.name);
@@ -9,7 +9,9 @@ test('Checkout page displays address details and accepts an order comment', asyn
 	await cartPage.validateCartVisible();
 	await cartPage.proceedToCheckout();
 	await checkoutPage.validateCheckoutPageVisible();
-	await checkoutPage.addOrderComment(registeredUser.username);
+	await checkoutPage.placeOrder();
 
-	await checkoutPage.validateOrderComment(registeredUser.username);
+	await paymentPage.validatePaymentFormVisible();
+	await paymentPage.fillPaymentDetails(purchaseFlow.payment);
+	await paymentPage.validatePaymentDetails(purchaseFlow.payment);
 });

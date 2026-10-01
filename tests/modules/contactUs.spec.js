@@ -1,4 +1,4 @@
-import { authenticatedTest as test, expect } from '../../src/fixtures/Page.fixtures.js';
+import { authenticatedTest as test } from '../../src/fixtures/Page.fixtures.js';
 import testData from '../../testData/credentials.json';
 
 test('Authenticated user can open Contact Us and see the form and Home link', async ({ NavigationTab, contactPage }) => {
@@ -7,6 +7,5 @@ test('Authenticated user can open Contact Us and see the form and Home link', as
 
 	await contactPage.validateContactUsPageVisible();
 	await contactPage.validateFormVisibility();
-
-	await expect(contactPage.homeLink).toBeVisible();
+	await contactPage.validateHomeLinkVisible();
 });
