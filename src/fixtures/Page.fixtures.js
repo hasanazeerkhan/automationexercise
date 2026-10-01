@@ -11,6 +11,7 @@ import { PaymentPage } from '../pages/Payment.page.js';
 import { PaymentCompletedPage } from '../pages/PaymentCompleted.page.js';
 import { ProductsPage } from '../pages/Products.page.js';
 import { SignupPage } from '../pages/Signup.page.js';
+import { createTestAccountDetails } from '../utils/testAccount.utils.js';
 
 /**
  * @typedef {Object} CustomPageFixtures
@@ -26,6 +27,7 @@ import { SignupPage } from '../pages/Signup.page.js';
  * @property {import('../pages/Contact.page.js').ContactPage} contactPage
  * @property {import('../pages/AccountCreated.page.js').AccountCreatedPage} accountCreatedPage
  * @property {import('../pages/AccountDeleted.page.js').AccountDeletedPage} accountDeletedPage
+ * @property {{ username: string, email: string, password: string, account: object }} registeredUser
  */
 
 /** @type {import('@playwright/test').TestType<CustomPageFixtures>} */
@@ -67,6 +69,27 @@ export const test = base.extend({
 	},
 	accountDeletedPage: async ({ page }, use) => {
 		await use(new AccountDeletedPage(page));
+	},
+	registeredUser: async ({ NavigationTab, signupPage, loginPage, accountCreatedPage, accountDeletedPage }, use, testInfo) => {
+		const user = createTestAccountDetails(testInfo);
+
+		await NavigationTab.clickSignupLogin();
+		await signupPage.startSignup(user.username, user.email);
+		await signupPage.validateAccountInformationVisible();
+		await signupPage.fillAccountInformation(user.account);
+		await signupPage.createAccount();
+		await accountCreatedPage.validateAccountCreated();
+		await accountCreatedPage.continueToHomePage();
+		if (!(await NavigationTab.isLoggedInAs(user.username))) {
+			await NavigationTab.openLoginPage();
+			await loginPage.login(user.email, user.password);
+		}
+		await NavigationTab.validateLoggedInUser(user.username);
+
+		await use(user);
+
+		await NavigationTab.deleteAccount();
+		await accountDeletedPage.validateAccountDeleted();
 	},
 });
 
