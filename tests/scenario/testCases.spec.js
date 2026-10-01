@@ -1,6 +1,6 @@
 import { test } from '../../src/fixtures/Page.fixtures.js';
 import testData from '../../testData/credentials.json';
-import { createTestAccountDetails } from '../../src/utils/testAccount.utils.js';
+import { createTestAccountDetails } from '../../src/utils/dynamicDataGenerator.utils.js';
 
 test('Test Case 1: Register User', async ({ NavigationTab, signupPage, accountCreatedPage, accountDeletedPage }, testInfo) => {
 	const user = createTestAccountDetails(testInfo);

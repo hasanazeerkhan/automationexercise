@@ -1,6 +1,6 @@
 import { test } from '../../src/fixtures/Page.fixtures.js';
 import purchaseFlow from '../../testData/purchaseFlow.json';
-import { createTestAccountDetails } from '../../src/utils/testAccount.utils.js';
+import { createTestAccountDetails } from '../../src/utils/dynamicDataGenerator.utils.js';
 
 test('New user can create an account, purchase a product, complete payment, and delete the account', async ({ NavigationTab, signupPage, accountCreatedPage, accountDeletedPage, productsPage, cartPage, checkoutPage, paymentPage, paymentCompletedPage }, testInfo) => {
 	const user = createTestAccountDetails(testInfo);
