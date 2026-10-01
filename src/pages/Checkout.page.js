@@ -28,6 +28,10 @@ export class CheckoutPage extends BasePage {
 			await this.orderComment.fill(comment);
 		}
 
+		async validateOrderComment(userName) {
+			await expect(this.orderComment).toHaveValue(`Order placed by ${userName}`);
+		}
+
 		// Sends the order to the payment step for card entry.
 		async placeOrder() {
 			await this.placeOrderButton.click();

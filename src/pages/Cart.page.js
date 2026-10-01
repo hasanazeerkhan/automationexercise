@@ -19,6 +19,7 @@ export class CartPage extends BasePage {
 		// Validates that the cart page is visible and ready for checkout.
 		async validateCartVisible() {
 			await expect(this.cartTable).toBeVisible();
+			await expect(this.proceedToCheckoutButton).toBeVisible();
 			console.log('Shopping cart table is visible');
 		}
 

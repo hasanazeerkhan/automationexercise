@@ -10,6 +10,7 @@ export class LoginPage extends BasePage {
 		this.passwordInput = this.loginForm.getByRole('textbox', { name: 'Password' });
 		this.loginButton = this.loginForm.getByRole('button', { name: 'Login' });
 		this.loggedInUserText = this.page.getByText(/Logged in as/i);
+		this.loginErrorMessage = this.loginForm.getByText('Your email or password is incorrect!');
 	}
 
 		// Logs in a registered user with the provided email and password.
@@ -23,5 +24,9 @@ export class LoginPage extends BasePage {
 		// Confirms the logged-in username is shown after a successful login.
 		async validateLoggedInAs(username) {
 			await expect(this.loggedInUserText).toContainText(username);
+		}
+
+		async validateLoginErrorVisible() {
+			await expect(this.loginErrorMessage).toBeVisible();
 		}
 }

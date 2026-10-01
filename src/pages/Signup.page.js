@@ -10,6 +10,7 @@ export class SignupPage extends BasePage {
 		this.signupNameInput = this.signupForm.getByPlaceholder('Name');
 		this.signupEmailInput = this.signupForm.getByPlaceholder('Email Address');
 		this.signupButton = this.signupForm.getByRole('button', { name: 'Signup' });
+		this.existingEmailErrorMessage = this.signupForm.getByText('Email Address already exist!');
 		this.accountInformationHeading = this.page.getByRole('heading', { name: 'Enter Account Information' });
 		this.mrRadio = this.page.locator('#id_gender1');
 		this.mrsRadio = this.page.locator('#id_gender2');
@@ -40,12 +41,16 @@ export class SignupPage extends BasePage {
 			console.log('Signup heading and name and email fields are visible');
 		}
 
+		async validateExistingEmailErrorVisible() {
+			await expect(this.existingEmailErrorMessage).toBeVisible();
+		}
+
 		// Starts the new user signup flow by entering their name and email.
 		async startSignup(name, email) {
 			await this.signupNameInput.fill(name);
 			await this.signupEmailInput.fill(email);
 			await this.signupButton.click();
-			await this.page.waitForLoadState('networkidle');
+			await expect(this.accountInformationHeading).toBeVisible();
 		}
 
 		// Confirms the account details form appears after signup is initiated.
@@ -82,6 +87,6 @@ export class SignupPage extends BasePage {
 		// Submits the completed signup form to create the new account.
 		async createAccount() {
 			await this.createAccountButton.click();
-			await this.page.waitForLoadState('networkidle');
+			await this.page.waitForLoadState('domcontentloaded');
 		}
 }

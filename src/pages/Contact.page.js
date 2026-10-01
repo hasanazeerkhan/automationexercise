@@ -49,6 +49,10 @@ export class ContactPage extends BasePage {
 			console.log('Contact form and feedback information are visible');
 		}
 
+		async validateHomeLinkVisible() {
+			await expect(this.homeLink).toBeVisible();
+		}
+
 		// Fills in the form with the customer support request details.
 		async fillContactForm({ name, email, subject, message }) {
 			await this.nameInput.fill(name);

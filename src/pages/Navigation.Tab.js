@@ -25,6 +25,11 @@ export class NavigationTab extends BasePage {
 			await expect(this.page).toHaveURL(/\/login(?:[/?#]|$)/);
 		}
 
+		async openLoginPage() {
+			await this.page.goto('/login', { waitUntil: 'networkidle' });
+			await expect(this.page).toHaveURL(/\/login(?:[/?#]|$)/);
+		}
+
 		// Opens the Contact Us page from the main navigation.
 		async openContactUs() {
 			await this.contactUsLink.click();
@@ -42,6 +47,11 @@ export class NavigationTab extends BasePage {
 			await this.page.waitForLoadState('networkidle');
 		}
 
+		async validateLoggedOut() {
+			await expect(this.page).toHaveURL(/\/login(?:[/?#]|$)/);
+			await expect(this.signupLoginLink).toBeVisible();
+		}
+
 		// Deletes the active account from the navigation menu.
 		async deleteAccount() {
 			await this.deleteAccountLink.click();
@@ -52,6 +62,10 @@ export class NavigationTab extends BasePage {
 		async validateLoggedInUser(username) {
 			await expect(this.loggedInUserText).toContainText(username);
 			console.log(`Logged-in user "${username}" is shown in the navigation bar`);
+		}
+
+		async isLoggedInAs(username) {
+			return this.loggedInUserText.filter({ hasText: username }).isVisible();
 		}
 
 		// Validates that the expected main navigation links are visible.
