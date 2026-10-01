@@ -1,4 +1,4 @@
-import { test } from '../../src/fixtures/Page.fixtures.js';
+import { expect, test } from '../../src/fixtures/Page.fixtures.js';
 import purchaseFlow from '../../testData/purchaseFlow.json';
 import { createTestAccountDetails } from '../../src/utils/testAccount.utils.js';
 
@@ -20,6 +20,11 @@ test('User can submit payment and see the order confirmation', async ({ Navigati
 	await checkoutPage.validateCheckoutPageVisible();
 	await checkoutPage.addOrderComment(purchaseFlow.checkout.comment);
 	await checkoutPage.placeOrder();
+	await expect(paymentPage.nameOnCardInput).toBeVisible();
+	await expect(paymentPage.cardNumberInput).toBeVisible();
+	await expect(paymentPage.cvcInput).toBeVisible();
+	await expect(paymentPage.expiryMonthInput).toBeVisible();
+	await expect(paymentPage.expiryYearInput).toBeVisible();
 	await paymentPage.fillPaymentDetails(purchaseFlow.payment);
 	await paymentPage.submitPayment();
 	await paymentCompletedPage.validatePaymentCompleted();
