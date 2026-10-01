@@ -17,7 +17,7 @@ export class LoginPage extends BasePage {
 			await this.emailInput.fill(email);
 			await this.passwordInput.fill(password);
 			await this.loginButton.click();
-			await this.page.waitForLoadState('networkidle');
+			await this.page.waitForLoadState('domcontentloaded');
 		}
 
 		// Confirms the logged-in username is shown after a successful login.
